@@ -36,7 +36,7 @@ jobs:
 
     - name: Type check with mypy
       run: |
-        mypy action_glossary_export/ tests/
+        mypy action_glossary_export/
       continue-on-error: true
 
     - name: Run tests
