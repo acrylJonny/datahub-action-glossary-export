@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from datahub.ingestion.source.snowflake.snowflake_connection import (
     SnowflakeConnectionConfig,
@@ -136,7 +136,7 @@ class GlossaryExportAction(Action):
         finally:
             cursor.close()
 
-    def _fetch_all_glossary_terms(self) -> List[Dict[str, Any]]:
+    def _fetch_all_glossary_terms(self) -> list[dict[str, Any]]:
         """Fetch all glossary terms using GraphQL"""
         if self.ctx.graph is None:
             logger.error("DataHub graph client is not available")
@@ -251,7 +251,7 @@ class GlossaryExportAction(Action):
         logger.info(f"Total glossary terms fetched: {len(all_terms)}")
         return all_terms
 
-    def _fetch_all_glossary_nodes(self) -> List[Dict[str, Any]]:
+    def _fetch_all_glossary_nodes(self) -> list[dict[str, Any]]:
         """Fetch all glossary nodes using GraphQL"""
         if self.ctx.graph is None:
             logger.error("DataHub graph client is not available")
@@ -354,7 +354,7 @@ class GlossaryExportAction(Action):
         logger.info(f"Total glossary nodes fetched: {len(all_nodes)}")
         return all_nodes
 
-    def _build_hierarchical_path(self, parent_nodes: Optional[Dict[str, Any]]) -> str:
+    def _build_hierarchical_path(self, parent_nodes: Optional[dict[str, Any]]) -> str:
         """Build a hierarchical path from parent nodes"""
         if not parent_nodes or not parent_nodes.get("nodes"):
             return ""
@@ -367,7 +367,7 @@ class GlossaryExportAction(Action):
 
         return " > ".join(path_parts) if path_parts else ""
 
-    def _transform_entity_to_row(self, entity: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def _transform_entity_to_row(self, entity: dict[str, Any]) -> Optional[dict[str, Any]]:
         """Transform a glossary entity (term or node) to a database row"""
         try:
             urn = entity.get("urn")
@@ -444,7 +444,7 @@ class GlossaryExportAction(Action):
             logger.error(f"Error transforming entity {entity.get('urn')}: {e}")
             return None
 
-    def _insert_rows_to_snowflake(self, rows: List[Dict[str, Any]]) -> None:
+    def _insert_rows_to_snowflake(self, rows: list[dict[str, Any]]) -> None:
         """Insert rows into Snowflake table"""
         if not rows:
             logger.info("No rows to insert")

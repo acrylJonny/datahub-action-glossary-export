@@ -240,19 +240,16 @@ class TestGlossaryExportAction:
         path = action._build_hierarchical_path({"nodes": []})
         assert path == ""
 
-    @patch("action_glossary_export.glossary_export_action.AcrylDataHubGraph")
-    def test_fetch_glossary_terms(
-        self, mock_acryl_graph, mock_config, mock_pipeline_context, sample_glossary_term
-    ):
+    def test_fetch_glossary_terms(self, mock_config, mock_pipeline_context, sample_glossary_term):
         """Test fetching glossary terms from GraphQL"""
-        mock_graph_instance = MagicMock()
-        mock_graph_instance.get_by_graphql_query.return_value = {
+        mock_datahub_graph = MagicMock()
+        mock_datahub_graph.execute_graphql.return_value = {
             "search": {
                 "total": 1,
                 "searchResults": [{"entity": sample_glossary_term}],
             }
         }
-        mock_acryl_graph.return_value = mock_graph_instance
+        mock_pipeline_context.graph.graph = mock_datahub_graph
 
         config = GlossaryExportConfig.model_validate(mock_config)
         action = GlossaryExportAction(config, mock_pipeline_context)
@@ -261,7 +258,7 @@ class TestGlossaryExportAction:
 
         assert len(terms) == 1
         assert terms[0]["urn"] == "urn:li:glossaryTerm:test-term"
-        mock_graph_instance.get_by_graphql_query.assert_called()
+        mock_datahub_graph.execute_graphql.assert_called()
 
     @patch(
         "datahub.ingestion.source.snowflake.snowflake_connection.SnowflakeConnectionConfig.get_native_connection"

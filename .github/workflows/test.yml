@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11"]
 
     steps:
     - uses: actions/checkout@v4
@@ -24,23 +24,21 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -e .
+        pip install -e ".[dev]"
+
+    - name: Lint with ruff
+      run: |
+        ruff check .
+
+    - name: Format check with ruff
+      run: |
+        ruff format --check .
+
+    - name: Type check with mypy
+      run: |
+        mypy action_glossary_export/ tests/
+      continue-on-error: true
 
     - name: Run tests
       run: |
         pytest tests/ -v --cov=action_glossary_export --cov-report=term-missing
-
-    - name: Lint with flake8
-      run: |
-        flake8 action_glossary_export --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 action_glossary_export --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    - name: Check code formatting with black
-      run: |
-        black --check action_glossary_export
-
-    - name: Type check with mypy
-      run: |
-        mypy action_glossary_export --ignore-missing-imports
-      continue-on-error: true
