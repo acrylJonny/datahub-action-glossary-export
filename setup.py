@@ -25,16 +25,17 @@ setup(
     url="https://github.com/datahub-project/datahub",
     license="Apache License 2.0",
     packages=find_packages(),
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     install_requires=[
         "acryl-datahub-actions>=0.0.9",
         "acryl-datahub>=0.8.34",
         "snowflake-connector-python>=3.0.0",
+        "sqlalchemy>=1.4.0",
         "pydantic>=2.0.0",
     ],
     entry_points={
         "datahub_actions.action.plugins": [
-            "action-glossary-export = action_glossary_export:GlossaryExportAction",
+            "action-glossary-export = action_glossary_export.glossary_export_action:GlossaryExportAction",
         ],
     },
     classifiers=[
@@ -42,7 +43,6 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
