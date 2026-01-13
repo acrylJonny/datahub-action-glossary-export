@@ -1,11 +1,11 @@
 # DataHub Action - Glossary Export to Snowflake
 # Requirements file for development and testing
 
-# Core dependencies
+# Core dependencies (for local development)
 acryl-datahub-actions>=0.0.9
 acryl-datahub>=0.8.34
-snowflake-connector-python>=3.0.0
-sqlalchemy>=1.4.0
+snowflake-connector-python>=3.0.0,<5.0.0
+sqlalchemy>=1.4.0,<3.0.0
 pydantic>=2.0.0
 
 # Development dependencies
