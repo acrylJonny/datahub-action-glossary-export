@@ -65,8 +65,8 @@ env/
 
 # Environment variables
 .env
-.env.*
 .env.local
+local_config.yaml
 
 # Logs
 *.log
