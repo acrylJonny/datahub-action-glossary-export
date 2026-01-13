@@ -5,7 +5,7 @@
 [![DataHub](https://img.shields.io/badge/DataHub-Compatible-blue)](https://datahubproject.io/)
 [![Snowflake](https://img.shields.io/badge/Snowflake-Compatible-blue)](https://www.snowflake.com/)
 
-**Author**: Brock Griffey  
+**Author**: Jonny Dixon  
 **Date**: January 13, 2026
 
 ## Overview
