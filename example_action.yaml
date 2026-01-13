@@ -1,0 +1,46 @@
+# Example configuration for the Glossary Export action
+#
+# Author: Brock Griffey
+# Date: January 13, 2026
+
+name: glossary-export-to-snowflake
+
+# Source configuration - use datahub-cloud for DataHub Cloud execution
+source:
+  type: "datahub-cloud"
+  config:
+    # Set to false to prevent the pipeline from exiting after 30 seconds of idle time
+    kill_after_idle_timeout: false
+
+# Action configuration
+action:
+  type: "action-glossary-export"
+  config:
+    # Snowflake connection settings (uses DataHub's SnowflakeConnectionConfig)
+    # Supports multiple authentication methods: password, key pair, OAuth, external browser
+    connection:
+      account_id: "xy12345"  # Snowflake account identifier (without .snowflakecomputing.com)
+      username: "your-username"
+      password: "${SNOWFLAKE_PASSWORD}"  # Use environment variable for security
+      warehouse: "COMPUTE_WH"
+      role: "ACCOUNTADMIN"  # Optional
+      authentication_type: "DEFAULT_AUTHENTICATOR"  # Or KEY_PAIR_AUTHENTICATOR, OAUTH_AUTHENTICATOR, etc.
+      # For key pair authentication, add:
+      # authentication_type: "KEY_PAIR_AUTHENTICATOR"
+      # private_key_path: "/path/to/private_key.pem"
+      # private_key_password: "${PRIVATE_KEY_PASSWORD}"  # If key is encrypted
+    
+    # Destination configuration
+    destination:
+      database: "DATAHUB"
+      schema: "METADATA"
+      table_name: "glossary_export"
+    
+    # Export settings
+    export_on_startup: true  # Export immediately when action starts
+    batch_size: 1000  # Number of entities to fetch per GraphQL query
+
+# DataHub connection (required for actions)
+datahub:
+  server: "http://localhost:8080"
+  token: "${DATAHUB_TOKEN}"  # Use environment variable
