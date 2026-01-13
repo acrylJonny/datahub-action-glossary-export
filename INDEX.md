@@ -267,7 +267,7 @@ Start here if you're new to the project:
 
 - 💬 **DataHub Slack**: Join the community
 - 🐛 **GitHub Issues**: Report bugs or ask questions
-- 📧 **Email**: Contact Brock Griffey
+- 📧 **Email**: Contact Jonny Dixon
 - 📖 **DataHub Docs**: https://datahubproject.io/docs/actions
 
 ---
@@ -289,7 +289,7 @@ All documentation includes:
 
 **Last Updated**: January 13, 2026  
 **Version**: 0.1.0  
-**Maintainer**: Brock Griffey
+**Maintainer**: Jonny Dixon
 
 To suggest improvements:
 1. Open a GitHub issue

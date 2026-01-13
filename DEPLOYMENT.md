@@ -1,6 +1,6 @@
 # Deployment Guide for DataHub Cloud
 
-**Author**: Brock Griffey  
+**Author**: Jonny Dixon  
 **Date**: January 13, 2026
 
 This guide provides step-by-step instructions for deploying the Glossary Export action to DataHub Cloud.

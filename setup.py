@@ -20,7 +20,7 @@ setup(
     name="datahub-action-glossary-export",
     version="0.1.0",
     description="DataHub Action to export glossary terms and nodes to Snowflake",
-    author="Brock Griffey",
+    author="Jonny Dixon",
     author_email="brock@acryl.io",
     url="https://github.com/datahub-project/datahub",
     license="Apache License 2.0",

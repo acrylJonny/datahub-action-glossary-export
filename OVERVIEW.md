@@ -4,7 +4,7 @@
 
 **DataHub Action: Glossary Export to Snowflake** is a production-ready DataHub Action that exports your entire business glossary (terms, nodes, hierarchy, domains, ownership) to a Snowflake table for analysis, reporting, and integration.
 
-**Author**: Brock Griffey  
+**Author**: Jonny Dixon  
 **Created**: January 13, 2026  
 **Version**: 0.1.0  
 **License**: Apache 2.0  
@@ -397,7 +397,7 @@ See [example_queries.sql](example_queries.sql) for 30+ more queries!
 - 🚀 **Quick Start**: See [QUICKSTART.md](QUICKSTART.md)
 - 🐛 **Issues**: Open a GitHub issue
 - 💬 **Community**: Join DataHub Slack
-- 📧 **Email**: Contact Brock Griffey
+- 📧 **Email**: Contact Jonny Dixon
 
 ### Troubleshooting
 

@@ -1,6 +1,6 @@
 # DataHub Glossary Export Action - Summary
 
-**Author**: Brock Griffey  
+**Author**: Jonny Dixon  
 **Date**: January 13, 2026  
 **Version**: 0.1.0
 

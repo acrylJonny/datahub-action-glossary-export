@@ -330,6 +330,6 @@ Extend `_transform_entity_to_row()` to:
 
 **Project Status**: Production Ready ✅
 
-**Maintainer**: Brock Griffey (brock@acryl.io)
+**Maintainer**: Jonny Dixon
 
 **Last Updated**: January 13, 2026

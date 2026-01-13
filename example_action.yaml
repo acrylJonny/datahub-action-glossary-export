@@ -1,6 +1,6 @@
 # Example configuration for the Glossary Export action
 #
-# Author: Brock Griffey
+# Author: Jonny Dixon
 # Date: January 13, 2026
 
 name: glossary-export-to-snowflake
