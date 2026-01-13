@@ -1,0 +1,39 @@
+# Local Configuration for Glossary Export Action
+# Run with: datahub actions -c glossary_export_local.yaml
+
+name: glossary-export-to-snowflake
+
+# Source - monitors DataHub for changes
+source:
+  type: "datahub-cloud"
+  config:
+    # Don't kill the pipeline after idle (keeps it running)
+    kill_after_idle_timeout: false
+
+# Your action configuration
+action:
+  type: "action-glossary-export"
+  config:
+    # Snowflake connection settings
+    connection:
+      account_id: "${SNOWFLAKE_ACCOUNT_ID}"  # e.g., "xy12345"
+      username: "${SNOWFLAKE_USERNAME}"       # e.g., "jd_datahub_user"
+      password: "${SNOWFLAKE_PASSWORD}"
+      warehouse: "${SNOWFLAKE_WAREHOUSE}"     # e.g., "COMPUTE_WH"
+      role: "${SNOWFLAKE_ROLE}"              # e.g., "jd_datahub_role"
+      authentication_type: "DEFAULT_AUTHENTICATOR"
+    
+    # Destination table
+    destination:
+      database: "${SNOWFLAKE_DATABASE}"       # e.g., "JONNY_DEMO"
+      schema: "${SNOWFLAKE_SCHEMA}"          # e.g., "public"
+      table_name: "glossary_export"
+    
+    # Export settings
+    export_on_startup: true   # Export immediately when action starts
+    batch_size: 1000          # Number of entities per GraphQL query
+
+# DataHub connection
+datahub:
+  server: "${DATAHUB_SERVER}"  # e.g., "https://your-instance.acryl.io"
+  token: "${DATAHUB_TOKEN}"    # Your DataHub API token
