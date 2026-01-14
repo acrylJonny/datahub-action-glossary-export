@@ -2,6 +2,9 @@
 #
 # Author: Jonny Dixon
 # Date: January 13, 2026
+#
+# NOTE: This configuration is for LOCAL execution using `datahub actions -c example_action.yaml`
+# For DataHub Cloud deployment, see DEPLOYMENT.md for the correct RemoteActionSource recipe format
 
 name: glossary-export-to-snowflake
 

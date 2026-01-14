@@ -56,15 +56,22 @@ source:
     action_spec:
       type: action-glossary-export
       config:
-        snowflake:
-          account: "your-account.snowflakecomputing.com"
-          user: "your-username"
+        # Snowflake connection configuration
+        connection:
+          account_id: "xy12345"  # Snowflake account identifier (without .snowflakecomputing.com)
+          username: "your-username"
           password: "${SNOWFLAKE_PASSWORD}"
           warehouse: "COMPUTE_WH"
+          role: "ACCOUNTADMIN"
+          authentication_type: "DEFAULT_AUTHENTICATOR"
+        
+        # Destination configuration
+        destination:
           database: "DATAHUB"
           schema: "METADATA"
-          role: "ACCOUNTADMIN"
           table_name: "glossary_export"
+        
+        # Export settings
         export_on_startup: true
         batch_size: 1000
     stage: live
@@ -76,10 +83,14 @@ source:
    - In the **Extra Pip Libraries** field, add:
 
 ```json
-["/datahub-integrations-service","https://github.com/your-org/datahub-action-glossary-export/archive/main.zip"]
+["/datahub-integrations-service", "https://github.com/your-org/datahub-action-glossary-export/releases/download/v0.1.3/datahub_action_glossary_export-0.1.3-py3-none-any.whl"]
 ```
 
-   Replace `your-org` with your GitHub organization/username.
+   Replace:
+   - `your-org` with your GitHub organization/username
+   - `v0.1.3` with the specific release version you want to deploy
+   
+   **Important**: Use the wheel file (`.whl`) from GitHub releases, not the archive (`.zip`). The `/datahub-integrations-service` path is a special reference that DataHub Cloud recognizes to install the integrations service package required for `RemoteActionSource`.
 
 4. **Schedule (Optional)**
    - You can schedule this to run periodically if you want regular exports
@@ -213,13 +224,6 @@ The current implementation does a full refresh (truncate and reload). For increm
 
 For issues or questions:
 - Check the [DataHub Actions documentation](https://datahubproject.io/docs/actions)
+- Check the [CHANGELOG.md](./CHANGELOG.md) for version history
 - Open an issue on GitHub
 - Contact your DataHub Cloud support team
-
-## Version History
-
-- **v0.1.0** (January 13, 2026) - Initial release
-  - Full glossary export
-  - Terms and nodes support
-  - Domain associations
-  - Ownership tracking

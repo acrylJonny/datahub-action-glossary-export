@@ -1,7 +1,7 @@
 # DataHub Action: Glossary Export to Snowflake
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](setup.py)
+[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](pyproject.toml)
 [![DataHub](https://img.shields.io/badge/DataHub-Compatible-blue)](https://datahubproject.io/)
 [![Snowflake](https://img.shields.io/badge/Snowflake-Compatible-blue)](https://www.snowflake.com/)
 
@@ -42,10 +42,14 @@ python -m pip install -e .
 When deploying to DataHub Cloud, add the following to the "Extra Pip Libraries" field in Step 5 of the ingestion source setup:
 
 ```json
-["/datahub-integrations-service","https://github.com/your-org/datahub-action-glossary-export/archive/main.zip"]
+["/datahub-integrations-service", "https://github.com/your-org/datahub-action-glossary-export/releases/download/v0.1.3/datahub_action_glossary_export-0.1.3-py3-none-any.whl"]
 ```
 
-Replace `your-org` with your GitHub organization name.
+Replace:
+- `your-org` with your GitHub organization name
+- `v0.1.3` with the specific release version you want to deploy
+
+**Note**: Use the wheel file (`.whl`) from GitHub releases, not the archive (`.zip`). The `/datahub-integrations-service` path provides the required `datahub_integrations` module.
 
 ## Configuration
 
@@ -200,14 +204,22 @@ source:
     action_spec:
       type: action-glossary-export
       config:
-        snowflake:
-          account: "your-account"
-          user: "your-username"
+        # Snowflake connection configuration
+        connection:
+          account_id: "xy12345"  # Snowflake account identifier
+          username: "your-username"
           password: "${SNOWFLAKE_PASSWORD}"
           warehouse: "COMPUTE_WH"
+          role: "ACCOUNTADMIN"
+          authentication_type: "DEFAULT_AUTHENTICATOR"
+        
+        # Destination configuration  
+        destination:
           database: "DATAHUB"
           schema: "METADATA"
           table_name: "glossary_export"
+        
+        # Export settings
         export_on_startup: true
         batch_size: 1000
     stage: live
