@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-01-20
+
+### Fixed
+- Removed unused `urn` variable from GraphQL variables dictionary in `fetch_glossary_term_usage`
+- Complete fix for GraphQL validation error
+
 ## [0.2.1] - 2026-01-20
 
 ### Fixed
-- Fixed GraphQL query error: Removed unused `$urn` variable from usage query that was causing validation errors
+- Fixed GraphQL query error: Removed unused `$urn` variable from usage query signature
 
 ## [0.2.0] - 2026-01-20
 

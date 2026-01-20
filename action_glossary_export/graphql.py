@@ -345,7 +345,6 @@ def fetch_glossary_term_usage(
 
     while True:
         variables = {
-            "urn": glossary_term_urn,
             "input": {
                 "types": entity_types,
                 "query": "*",
