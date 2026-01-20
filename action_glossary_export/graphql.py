@@ -127,7 +127,7 @@ query searchGlossaryNodes($input: SearchInput!) {
 """
 
 USAGE_QUERY: Final[str] = """
-query getRelatedEntities($urn: String!, $input: SearchAcrossEntitiesInput!) {
+query getRelatedEntities($input: SearchAcrossEntitiesInput!) {
     searchAcrossEntities(input: $input) {
         start
         count
