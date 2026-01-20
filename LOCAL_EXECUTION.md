@@ -46,7 +46,7 @@ Or manually:
 
 ```bash
 export $(cat .env | grep -v '^#' | xargs)
-datahub actions -c local_config.yaml
+datahub actions -c examples/local_config.yaml
 ```
 
 ## Scheduling with Cron
@@ -75,7 +75,7 @@ Type=oneshot
 User=your-user
 WorkingDirectory=/path/to/datahub-action-glossary-export
 EnvironmentFile=/path/to/datahub-action-glossary-export/.env
-ExecStart=/usr/local/bin/datahub actions -c local_config.yaml
+ExecStart=/usr/local/bin/datahub actions -c examples/local_config.yaml
 
 [Install]
 WantedBy=multi-user.target
@@ -116,7 +116,7 @@ COPY . /app
 
 RUN pip install -e .
 
-CMD ["datahub", "actions", "-c", "local_config.yaml"]
+CMD ["datahub", "actions", "-c", "examples/local_config.yaml"]
 ```
 
 Build and run:

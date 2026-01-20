@@ -38,10 +38,16 @@ action:
       database: "DATAHUB"
       schema: "METADATA"
       table_name: "glossary_export"
+      usage_table_name: "glossary_term_usage"  # Table for glossary term usage in reports/dashboards
     
     # Export settings
     export_on_startup: true  # Export immediately when action starts
     batch_size: 1000  # Number of entities to fetch per GraphQL query
+    entity_types:  # Entity types to track for glossary term usage (default: ["DASHBOARD"])
+      - DASHBOARD  # Power BI reports, Tableau dashboards, Looker dashboards
+      # - CHART     # Individual visualizations (uncomment to track)
+      # - DATASET   # Tables, views, datasets (uncomment to track)
+      # - DATA_JOB  # dbt models, Airflow DAGs (uncomment to track)
 
 # DataHub connection (required for actions)
 datahub:

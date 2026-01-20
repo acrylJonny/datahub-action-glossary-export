@@ -1,0 +1,146 @@
+# Test GraphQL Query for Glossary Term Usage
+# 
+# Use this in DataHub's GraphiQL interface (typically at http://your-datahub:8080/api/graphiql)
+# 
+# Instructions:
+# 1. Copy this query into the GraphiQL editor
+# 2. Replace the termUrn in the variables section below with a real glossary term URN from your DataHub
+# 3. Execute the query to see which entities use that glossary term
+#
+# To find a glossary term URN:
+# - Go to DataHub UI -> Govern -> Glossary
+# - Click on any glossary term
+# - Copy the URN from the URL or the term details
+#
+# Note: By default, the action only tracks DASHBOARD entities (Power BI reports, Tableau dashboards).
+# This query shows all types. To match the default behavior, use only [DASHBOARD] in the types array.
+
+query getRelatedEntities($termUrn: String!) {
+  searchAcrossEntities(
+    input: {
+      types: [DASHBOARD]  # Default: only dashboards/reports. Add CHART, DATASET, DATA_JOB if needed
+      query: "*"
+      start: 0
+      count: 10
+      filters: [
+        {
+          field: "glossaryTerms"
+          values: [$termUrn]
+          condition: EQUAL
+        }
+      ]
+    }
+  ) {
+    start
+    count
+    total
+    searchResults {
+      entity {
+        urn
+        type
+        ... on Dashboard {
+          properties {
+            name
+            description
+          }
+          platform {
+            name
+          }
+          subTypes {
+            typeNames
+          }
+          container {
+            urn
+            properties {
+              name
+            }
+          }
+          domain {
+            domain {
+              urn
+              properties {
+                name
+              }
+            }
+          }
+        }
+        ... on Chart {
+          properties {
+            name
+            description
+          }
+          platform {
+            name
+          }
+          subTypes {
+            typeNames
+          }
+          container {
+            urn
+            properties {
+              name
+            }
+          }
+          domain {
+            domain {
+              urn
+              properties {
+                name
+              }
+            }
+          }
+        }
+        ... on Dataset {
+          properties {
+            name
+            description
+          }
+          platform {
+            name
+          }
+          subTypes {
+            typeNames
+          }
+          container {
+            urn
+            properties {
+              name
+            }
+          }
+          domain {
+            domain {
+              urn
+              properties {
+                name
+              }
+            }
+          }
+        }
+        ... on DataJob {
+          properties {
+            name
+            description
+          }
+          domain {
+            domain {
+              urn
+              properties {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# Query Variables (paste in the "Query Variables" section of GraphiQL):
+# {
+#   "termUrn": "urn:li:glossaryTerm:YourGlossaryTermName"
+# }
+#
+# Example with a real URN:
+# {
+#   "termUrn": "urn:li:glossaryTerm:Revenue"
+# }

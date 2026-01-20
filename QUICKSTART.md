@@ -19,7 +19,7 @@ pip install -e .
 
 ### 2. Configure
 
-Edit `example_action.yaml` with your credentials:
+Edit `examples/example_action.yaml` with your credentials:
 
 ```yaml
 action:
@@ -48,7 +48,7 @@ export SNOWFLAKE_PASSWORD="your-snowflake-password"
 ### 4. Run
 
 ```bash
-datahub actions -c example_action.yaml
+datahub actions -c examples/example_action.yaml
 ```
 
 ### 5. Verify
@@ -150,7 +150,7 @@ WHERE entity_type = 'glossary_term'
 
 - 📖 Read [README.md](README.md) for full documentation
 - 🚀 See [DEPLOYMENT.md](DEPLOYMENT.md) for production deployment
-- 📊 Use [example_queries.sql](example_queries.sql) for reporting
+- 📊 Use [example_queries.sql](examples/example_queries.sql) for reporting
 - 📋 Check [SUMMARY.md](SUMMARY.md) for complete overview
 
 ## Troubleshooting

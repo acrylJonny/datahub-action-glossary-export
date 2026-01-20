@@ -17,6 +17,6 @@ fi
 
 # Run the action
 echo "Starting glossary export..."
-datahub actions -c local_config.yaml
+datahub actions -c examples/local_config.yaml
 
 echo "✅ Glossary export completed!"

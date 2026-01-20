@@ -1,17 +1,15 @@
-# Copyright 2026 Acryl Data, Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+"""DataHub action to export glossary to Snowflake."""
 
-from action_glossary_export.glossary_export_action import GlossaryExportAction
+__version__ = "0.2.0"
 
-__all__ = ["GlossaryExportAction"]
+from .config import GlossaryExportConfig, SnowflakeDestinationConfig
+from .glossary_export_action import GlossaryExportAction
+from .models import GlossaryRow, UsageRow
+
+__all__ = [
+    "GlossaryExportAction",
+    "GlossaryExportConfig",
+    "SnowflakeDestinationConfig",
+    "GlossaryRow",
+    "UsageRow",
+]

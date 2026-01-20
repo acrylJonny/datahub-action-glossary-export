@@ -76,3 +76,10 @@ local_config.yaml
 
 # DataHub
 datahub.log
+
+# Backup and temporary files
+*_old.py
+*_backup.py
+*_new.py
+*.bak
+*.tmp
