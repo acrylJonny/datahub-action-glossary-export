@@ -57,6 +57,13 @@ def get_snowflake_connection():
         print("  SNOWFLAKE_DATABASE, SNOWFLAKE_SCHEMA")
         sys.exit(1)
 
+    # Type assertions - we've checked these are not None above
+    assert account is not None
+    assert username is not None
+    assert password is not None
+    assert database is not None
+    assert schema is not None
+
     print(f"Connecting to Snowflake: {account} / {database}.{schema}")
 
     config = SnowflakeConnectionConfig(
@@ -110,7 +117,7 @@ def create_test_glossary_data():
             urn="urn:li:glossaryTerm:customer-id",
             name="Customer ID",
             entity_type="glossary_term",
-            description="Unique identifier for customers with special chars: apostrophe's, \"quotes\", and 100% symbols!",
+            description='Unique identifier for customers with special chars: apostrophe\'s, "quotes", and 100% symbols!',
             hierarchical_path="Customer ID",
         ),
     ]

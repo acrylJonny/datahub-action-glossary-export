@@ -14,7 +14,7 @@ Date: January 20, 2026
 import json
 import sys
 
-import requests
+import requests  # type: ignore[import-untyped]
 
 # Configuration
 GMS_SERVER = "https://sok-poc.acryl.io/gms"
@@ -51,7 +51,7 @@ def get_glossary_terms():
         "Content-Type": "application/json",
     }
 
-    all_terms = []
+    all_terms: list[dict[str, str]] = []
     start = 0
     batch_size = 100
 

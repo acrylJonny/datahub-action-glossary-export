@@ -116,9 +116,7 @@ class TestSnowflakeIntegration:
             cursor.execute(f"DROP TABLE IF EXISTS {test_table_name}")
             cursor.close()
 
-    def test_create_and_drop_usage_table(
-        self, snowflake_connection, test_usage_table_name
-    ):
+    def test_create_and_drop_usage_table(self, snowflake_connection, test_usage_table_name):
         """Test creating and dropping usage table in Snowflake."""
         # Create table
         create_usage_table(snowflake_connection, test_usage_table_name)
