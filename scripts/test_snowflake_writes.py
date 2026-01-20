@@ -71,7 +71,7 @@ def get_snowflake_connection():
     try:
         cursor.execute(f"USE DATABASE {database}")
         cursor.execute(f"USE SCHEMA {schema}")
-        print(f"✅ Connected successfully")
+        print("✅ Connected successfully")
     finally:
         cursor.close()
 
@@ -275,41 +275,41 @@ def main():
 
     try:
         # Test 1: Create tables
-        print(f"\n1️⃣ Creating test tables...")
+        print("\n1️⃣ Creating test tables...")
         create_glossary_table(conn, glossary_table)
         print(f"  ✅ Created {glossary_table}")
         create_usage_table(conn, usage_table)
         print(f"  ✅ Created {usage_table}")
 
         # Test 2: Insert glossary data
-        print(f"\n2️⃣ Inserting glossary data...")
+        print("\n2️⃣ Inserting glossary data...")
         glossary_rows = create_test_glossary_data()
         print(f"  Created {len(glossary_rows)} Pydantic GlossaryRow objects")
         insert_glossary_rows(conn, glossary_table, glossary_rows)
-        print(f"  ✅ Inserted successfully")
+        print("  ✅ Inserted successfully")
 
         # Test 3: Insert usage data
-        print(f"\n3️⃣ Inserting usage data...")
+        print("\n3️⃣ Inserting usage data...")
         usage_rows = create_test_usage_data()
         print(f"  Created {len(usage_rows)} Pydantic UsageRow objects")
         insert_usage_rows(conn, usage_table, usage_rows)
-        print(f"  ✅ Inserted successfully")
+        print("  ✅ Inserted successfully")
 
         # Test 4: Verify glossary data
         verify_glossary_data(conn, glossary_table, len(glossary_rows))
-        print(f"  ✅ Glossary data verified")
+        print("  ✅ Glossary data verified")
 
         # Test 5: Verify usage data
         verify_usage_data(conn, usage_table, len(usage_rows))
-        print(f"  ✅ Usage data verified")
+        print("  ✅ Usage data verified")
 
         print("\n" + "=" * 70)
         print("✅ ALL TESTS PASSED!")
         print("=" * 70)
-        print(f"\nTest tables created:")
+        print("\nTest tables created:")
         print(f"  - {glossary_table}")
         print(f"  - {usage_table}")
-        print(f"\nTo inspect manually:")
+        print("\nTo inspect manually:")
         print(f"  SELECT * FROM {glossary_table};")
         print(f"  SELECT * FROM {usage_table};")
 
@@ -328,7 +328,7 @@ def main():
             try:
                 cursor.execute(f"DROP TABLE IF EXISTS {glossary_table}")
                 cursor.execute(f"DROP TABLE IF EXISTS {usage_table}")
-                print(f"✅ Cleaned up test tables")
+                print("✅ Cleaned up test tables")
             finally:
                 cursor.close()
 
