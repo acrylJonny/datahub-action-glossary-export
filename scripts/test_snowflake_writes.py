@@ -14,7 +14,7 @@ Run with Snowflake credentials:
     export SNOWFLAKE_PASSWORD="your-password"
     export SNOWFLAKE_DATABASE="your-database"
     export SNOWFLAKE_SCHEMA="your-schema"
-    
+
     python test_snowflake_writes.py
 """
 
